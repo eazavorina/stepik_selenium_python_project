@@ -29,3 +29,11 @@ class ProductPage(BasePage):
         total_message_price = self.browser.find_element(*ProductPageLocators.TOTAL_MESSAGE).text
         assert original_price == total_message_price, (f"Total price in total message '{total_message_price}' is not "
                                                        f"equal to original price '{original_price}'")
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.GOOD_ADDED_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.GOOD_ADDED_MESSAGE), \
+            "Success message is presented, but should disappear"
